@@ -6,10 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.shoshaplaystation.R
+import com.example.shoshaplaystation.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class Home : Fragment() {
-
+@AndroidEntryPoint
+class Home : Fragment() ,HomeContracts{
+    private var binding:FragmentHomeBinding?=null
+    private val homePresenter:HomePresenter=HomePresenter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,8 +22,13 @@ class Home : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        binding=FragmentHomeBinding.inflate(inflater,container,false)
+            .apply {
+
+            }
+
+
+        return binding!!.root
     }
 
     companion object {
