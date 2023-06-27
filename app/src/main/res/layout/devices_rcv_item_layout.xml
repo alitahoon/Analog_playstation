@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="device"
+            type="com.example.domain.entity.Device" />
+        <variable
+            name="listener"
+            type="com.example.trainlivelocation.utli.DeviceListener" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:cardCornerRadius="@dimen/_30sdp"
+        android:layout_margin="@dimen/_15sdp">
+
+        <LinearLayout
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp"
+            android:background="@color/secondory">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/controller" />
+
+            <TextView
+                android:textColor="@color/primeryColor"
+                android:textStyle="bold"
+                android:letterSpacing="0.1"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="@dimen/_12ssp"
+                android:text="Devices 1" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
