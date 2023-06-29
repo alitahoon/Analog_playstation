@@ -1,6 +1,7 @@
 package com.example.shoshaplaystation.di
 
 import com.example.domain.repo.UserRepo
+import com.example.domain.usercases.DeleteDeviceFromDatabaseByID
 import com.example.domain.usercases.GetDevicesFromDatabase
 import com.example.domain.usercases.InsertDeviceToDatabase
 import dagger.Module
@@ -20,5 +21,10 @@ object usecaseModule {
     @Provides
     fun provideInsertDeviceToDatabase(userRepo: UserRepo):InsertDeviceToDatabase{
         return InsertDeviceToDatabase(userRepo)
+    }
+
+    @Provides
+    fun provideDeleteDeviceFromDatabaseByID(userRepo: UserRepo):DeleteDeviceFromDatabaseByID{
+        return DeleteDeviceFromDatabaseByID(userRepo)
     }
 }

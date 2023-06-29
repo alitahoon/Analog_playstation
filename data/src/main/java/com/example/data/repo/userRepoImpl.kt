@@ -36,4 +36,16 @@ class userRepoImpl(
         }
     }
 
+    override suspend fun deleteDeviceFromDatabaseByID(
+        id: Int?,
+        result: (Resource<String>) -> Unit
+    ) {
+        try {
+            myDatabase.DeviceEntityDao().deleteDevice(id)
+            result.invoke(Resource.Success("Successfully deleted device"))
+        } catch (e: Exception) {
+            result.invoke(Resource.Failure("Failed deleting device ---> ${e.message}"))
+        }
+    }
+
 }

@@ -13,4 +13,8 @@ interface DeviceEntityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertStationItemEntityDao(device: DeviceEntity)
+
+
+    @Query("DELETE FROM deviceentity WHERE id = :id")
+    fun deleteDevice(id:Int?)
 }
