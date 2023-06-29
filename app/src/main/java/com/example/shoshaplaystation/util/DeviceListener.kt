@@ -1,8 +1,9 @@
 package com.example.trainlivelocation.utli
 
 import com.example.domain.entity.Device
+import com.example.domain.entity.DeviceEntity
 
 
 interface DeviceListener {
- fun onDeviceClicked(device: Device)
+ fun onDeviceClicked(device: DeviceEntity)
 }

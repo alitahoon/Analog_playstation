@@ -3,8 +3,13 @@ package com.example.shoshaplaystation.di
 import com.example.domain.repo.UserRepo
 import com.example.domain.usercases.GetDevicesFromDatabase
 import com.example.domain.usercases.InsertDeviceToDatabase
+import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
+@Module
+@InstallIn(SingletonComponent::class)
 object usecaseModule {
 
     @Provides

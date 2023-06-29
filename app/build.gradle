@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -44,15 +45,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
+
 }
 // Allow references to generated code
 kapt {
     correctErrorTypes = true
 }
 dependencies {
-    def nav_version = "2.6.0"
+    def room_version = "2.5.2"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    def nav_version = "2.6.0"
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+
+    implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -73,10 +82,24 @@ dependencies {
 
     implementation 'com.intuit.ssp:ssp-android:1.1.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    // Kotlin Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-    implementation("com.google.dagger:hilt-android:2.44")
+    // Room components
+    implementation "androidx.room:room-ktx:2.4.0"
+    annotationProcessor 'androidx.room:room-compiler:2.4.0-beta01'
+    kapt "androidx.room:room-compiler:2.4.0"
+
+
+    // Coroutines support for Room
+    implementation "androidx.room:room-ktx:2.4.0"
+
+    implementation("com.google.dagger:hilt-android:2.44.2")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+
+
 
 
 }

@@ -1,8 +1,10 @@
 package com.example.shoshaplaystation.ui
 
+import Resource
 import com.example.domain.entity.Device
 
 interface AddDeviceView {
 
-    fun onAddDeviceToDatabaseClicked(device: Device)
+    fun addDeviceToDatabase(result: Resource<String>)
+
 }

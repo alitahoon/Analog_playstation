@@ -4,17 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.entity.Device
+import com.example.domain.entity.DeviceEntity
 import com.example.shoshaplaystation.databinding.DevicesRcvItemLayoutBinding
 import com.example.shoshaplaystation.util.BindableAdapter
 
-class DeviceCustomAdapter(private val postListener: DeviceListener) :
-    RecyclerView.Adapter<DeviceAdapterViewHolder>(), BindableAdapter<ArrayList<Device>> {
+class DeviceCustomAdapter(private val deviceListener: DeviceListener) :
+    RecyclerView.Adapter<DeviceAdapterViewHolder>(), BindableAdapter<ArrayList<DeviceEntity>> {
 
     private var binding: DevicesRcvItemLayoutBinding? = null
-    lateinit var postArrayList: ArrayList<Device>
-    var postList = emptyList<Device>()
+    lateinit var postArrayList: ArrayList<DeviceEntity>
+    var postList = emptyList<DeviceEntity>()
 
-    public fun updateData(postList: ArrayList<Device>) {
+    public fun updateData(postList: ArrayList<DeviceEntity>) {
 
     }
 
@@ -24,7 +25,7 @@ class DeviceCustomAdapter(private val postListener: DeviceListener) :
             parent,
             false
         )
-        return DeviceAdapterViewHolder(binding!!, postListener)
+        return DeviceAdapterViewHolder(binding!!, deviceListener)
     }
 
     override fun getItemCount(): Int = postList.size
@@ -34,7 +35,7 @@ class DeviceCustomAdapter(private val postListener: DeviceListener) :
         holder.bind(post)
     }
 
-    override fun setData(data: ArrayList<Device>) {
+    override fun setData(data: ArrayList<DeviceEntity>) {
         this.postList = data
         notifyDataSetChanged()
     }

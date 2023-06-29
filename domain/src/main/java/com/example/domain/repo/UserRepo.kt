@@ -6,7 +6,7 @@ import com.example.domain.entity.DeviceEntity
 
 interface UserRepo {
     suspend fun insertDeviceToDatabase(
-        device: Device, result: (Resource<String>) -> Unit
+        device: DeviceEntity, result: (Resource<String>) -> Unit
     )
 
     suspend fun getDevicesFromDatabase(

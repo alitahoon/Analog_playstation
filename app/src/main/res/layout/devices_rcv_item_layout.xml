@@ -5,7 +5,7 @@
     <data>
         <variable
             name="device"
-            type="com.example.domain.entity.Device" />
+            type="com.example.domain.entity.DeviceEntity" />
         <variable
             name="listener"
             type="com.example.trainlivelocation.utli.DeviceListener" />
@@ -39,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                setDeviceNumber="@{device.deviceNumber}"
                 android:textSize="@dimen/_12ssp"
                 android:text="Devices 1" />
         </LinearLayout>

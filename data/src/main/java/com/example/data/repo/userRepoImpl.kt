@@ -1,24 +1,24 @@
 package com.example.data.repo
 
 import Resource
-import com.example.data.dataSources.MyDatabase
-import com.example.domain.entity.Device
+import com.example.data.MyDatabase
 import com.example.domain.entity.DeviceEntity
 import com.example.domain.repo.UserRepo
+
 
 class userRepoImpl(
     private val myDatabase: MyDatabase
 ) : UserRepo {
     private val TAG: String? = "userRepoImpl"
     override suspend fun insertDeviceToDatabase(
-        device: Device,
+        device: DeviceEntity,
         result: (Resource<String>) -> Unit
     ) {
         try {
             myDatabase.DeviceEntityDao().insertStationItemEntityDao(device)
-            result.invoke(Resource.Success("Successfully added device data item in database"))
+            result.invoke(Resource.Success("Successfully added Device data item in database"))
         } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed inserting device data item to database ---> ${e.message}"))
+            result.invoke(Resource.Failure("Failed inserting DeviceItemToDatabase ---> ${e.message}"))
         }
     }
 
@@ -27,12 +27,13 @@ class userRepoImpl(
             result.invoke(
                 Resource.Success(
                     ArrayList(
-                        myDatabase.DeviceEntityDao().getStationItemEntityDao()
+                        myDatabase.DeviceEntityDao().getDevices()
                     )
                 )
             )
         } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed getting device items from database ---> ${e.message}"))
-        }    }
+            result.invoke(Resource.Failure("Failed getting StationAlarmsFromDatabase ---> ${e.message}"))
+        }
+    }
 
 }
