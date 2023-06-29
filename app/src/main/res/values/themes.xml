@@ -3,6 +3,8 @@
     <style name="Theme.ShoshaPlaystation" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -12,5 +14,54 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/primeryColor</item>
         <!-- Customize your theme here. -->
+    </style>
+
+
+    <!--    CustomBottomSheetDialog-->
+    <style name="CustomBottomSheetDialog" parent="@style/ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceBottomSheetDialog</item>
+    </style>
+
+
+
+    <!--    CustomBottomSheetDialog-->
+    <style name="CustomDialog" parent="@style/ThemeOverlay.MaterialComponents.Dialog">
+        <item name="dialogTheme">@style/CustomDialogStyle</item>
+    </style>
+
+    <style name="CustomDialogStyle" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/CustomShapeAppearanceDialog</item>
+    </style>
+
+    <style name="CustomShapeAppearanceBottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="cornerSizeTopRight">@dimen/_30sdp</item>
+        <item name="cornerSizeTopLeft">@dimen/_30sdp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+    </style>
+    <style name="CustomShapeAppearanceDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="backgroundTint">@color/primeryColor</item>
+        <item name="cornerSizeTopRight">@dimen/_30sdp</item>
+        <item name="cornerSizeTopLeft">@dimen/_30sdp</item>
+        <item name="cornerSizeBottomRight">@dimen/_30sdp</item>
+        <item name="cornerSizeBottomLeft">@dimen/_30sdp</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.ShoshaPlaystation">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
+    <style name="LoadingDialogStyle" parent="Theme.AppCompat.Light.DialogWhenLarge">
+        <item name="windowNoTitle" >true</item>
+        <item name="android:statusBarColor">@color/primeryColor</item>
     </style>
 </resources>

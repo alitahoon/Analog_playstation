@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.domain.entity.Device
 import com.example.domain.entity.DeviceEntity
 import com.example.shoshaplaystation.databinding.FragmentHomeBinding
 import com.example.trainlivelocation.utli.DeviceCustomAdapter
@@ -38,8 +37,11 @@ class Home : Fragment() ,HomeView,DeviceListener{
             .apply {
 
             }
+        binding!!.homeAddDevciesButton.setOnClickListener{
+            val bottomSheetDialogFragment = AddDevicesDialog()
+            bottomSheetDialogFragment.show(childFragmentManager, "AddDevicesDialog")
 
-
+        }
         return binding!!.root
     }
 

@@ -26,8 +26,8 @@ class splash : AppCompatActivity() {
         val scaleYAnimator = ObjectAnimator.ofFloat(binding!!.splashLogo, "scaleY", 0f, 1f)
 
         // Set duration in milliseconds (3 seconds)
-        scaleXAnimator.duration = 2000
-        scaleYAnimator.duration = 2000
+        scaleXAnimator.duration = 1000
+        scaleYAnimator.duration = 1000
 
         // Add an AnimatorListener to perform an action when the animation finishes
         scaleXAnimator.addListener(object : Animator.AnimatorListener {
