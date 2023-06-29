@@ -6,8 +6,9 @@ import com.example.domain.entity.DeviceEntity
 import com.example.domain.usercases.GetDevicesFromDatabase
 import com.example.domain.usercases.InsertDeviceToDatabase
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class AddDevicePresenter(
+class AddDevicePresenter @Inject constructor(
     private val insertDeviceToDatabase: InsertDeviceToDatabase,
     private val getDevicesFromDatabase: GetDevicesFromDatabase
 ) {
@@ -25,10 +26,17 @@ class AddDevicePresenter(
     }
 
     fun insertNewDeviceToDatabase(device: DeviceEntity) {
-        coroutineScope.launch (Dispatchers.IO){
-            insertDeviceToDatabase(device){
-                view!!.addDeviceToDatabase(it)
+
+        coroutineScope.launch {
+            val child1=coroutineScope.launch (Dispatchers.IO) {
+                insertDeviceToDatabase(device){
+                    val child=launch (Dispatchers.Main){
+                        view!!.addDeviceToDatabase(it)
+                    }
+                }
             }
+            child1.join()
+
         }
     }
 

@@ -9,13 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.domain.entity.DeviceEntity
 import com.example.shoshaplaystation.databinding.FragmentHomeBinding
+import com.example.shoshaplaystation.util.AddDeviceListener
 import com.example.trainlivelocation.utli.DeviceCustomAdapter
 import com.example.trainlivelocation.utli.DeviceListener
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class Home : Fragment() ,HomeView,DeviceListener{
+class Home : Fragment() ,HomeView,DeviceListener,AddDeviceListener{
     private var binding:FragmentHomeBinding?=null
     private val TAG="Home"
 
@@ -38,7 +39,7 @@ class Home : Fragment() ,HomeView,DeviceListener{
 
             }
         binding!!.homeAddDevciesButton.setOnClickListener{
-            val bottomSheetDialogFragment = AddDevicesDialog()
+            val bottomSheetDialogFragment = AddDevicesDialog(this)
             bottomSheetDialogFragment.show(childFragmentManager, "AddDevicesDialog")
 
         }
@@ -69,5 +70,9 @@ class Home : Fragment() ,HomeView,DeviceListener{
     }
 
     override fun onDeviceClicked(device: DeviceEntity) {
+    }
+
+    override fun onDeviceAdded() {
+        homePresenter.getDevices()
     }
 }
