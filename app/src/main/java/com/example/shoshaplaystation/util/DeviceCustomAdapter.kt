@@ -31,8 +31,11 @@ class DeviceCustomAdapter(private val deviceListener: DeviceListener) :
     override fun getItemCount(): Int = postList.size
 
     override fun onBindViewHolder(holder: DeviceAdapterViewHolder, position: Int) {
-        val post = postList.get(position)
-        holder.bind(post)
+        val device = postList.get(position) as DeviceEntity
+        holder.bind(device)
+        holder.itemView.setOnLongClickListener {
+            deviceListener.onDeviceLongClicked(device)
+        }
     }
 
     override fun setData(data: ArrayList<DeviceEntity>) {

@@ -6,16 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.domain.entity.DeviceEntity
-import com.example.shoshaplaystation.R
 import com.example.shoshaplaystation.databinding.FragmentAddDeviceBinding
-import com.example.shoshaplaystation.util.AddDeviceListener
+import com.example.shoshaplaystation.util.DeviceCountChangeListener
 import com.example.shoshaplaystation.util.toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddDevicesDialog (private val listener: AddDeviceListener): BottomSheetDialogFragment() ,AddDeviceView{
+class AddDevicesDialog (private val listener: DeviceCountChangeListener): BottomSheetDialogFragment() ,AddDeviceView{
     private val TAG="AddDevicesDialog"
     private var binding:FragmentAddDeviceBinding?=null
 

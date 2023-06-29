@@ -15,4 +15,5 @@
     <color name="third">#93BFCF</color>
     <color name="iconColor">#187498</color>
     <color name="iconalarmColor">#DD5353</color>
+    <color name="greenButton">#00DFA2</color>
 </resources>
