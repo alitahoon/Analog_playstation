@@ -60,6 +60,7 @@ dependencies {
     def nav_version = "2.6.0"
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
     implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+    implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

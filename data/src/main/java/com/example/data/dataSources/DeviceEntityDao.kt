@@ -15,6 +15,9 @@ interface DeviceEntityDao {
     fun insertStationItemEntityDao(device: DeviceEntity)
 
 
-    @Query("DELETE FROM deviceentity WHERE id = :id")
-    fun deleteDevice(id:Int?)
+    @Query("DELETE FROM DeviceEntity WHERE id = :id")
+    fun deleteDevice(id:Long?)
+
+    @Query("SELECT deviceNumber FROM DeviceEntity ORDER BY deviceNumber DESC LIMIT 1")
+    fun getLastValue(): Int
 }

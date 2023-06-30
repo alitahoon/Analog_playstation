@@ -37,7 +37,7 @@ class userRepoImpl(
     }
 
     override suspend fun deleteDeviceFromDatabaseByID(
-        id: Int?,
+        id: Long?,
         result: (Resource<String>) -> Unit
     ) {
         try {
@@ -45,6 +45,18 @@ class userRepoImpl(
             result.invoke(Resource.Success("Successfully deleted device"))
         } catch (e: Exception) {
             result.invoke(Resource.Failure("Failed deleting device ---> ${e.message}"))
+        }
+    }
+
+    override suspend fun getLastDeviceNumber(result: (Resource<Int>) -> Unit) {
+        try {
+            result.invoke(
+                Resource.Success(
+                        myDatabase.DeviceEntityDao().getLastValue()
+                )
+            )
+        } catch (e: Exception) {
+            result.invoke(Resource.Failure("Failed getting StationAlarmsFromDatabase ---> ${e.message}"))
         }
     }
 

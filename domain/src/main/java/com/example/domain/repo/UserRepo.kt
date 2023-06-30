@@ -13,5 +13,6 @@ interface UserRepo {
         result: (Resource<ArrayList<DeviceEntity>>) -> Unit
     )
 
-    suspend fun deleteDeviceFromDatabaseByID(id:Int?,result: (Resource<String>) -> Unit)
+    suspend fun deleteDeviceFromDatabaseByID(id:Long?,result: (Resource<String>) -> Unit)
+    suspend fun getLastDeviceNumber(result: (Resource<Int>) -> Unit)
 }

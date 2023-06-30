@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import com.example.domain.entity.DeviceEntity
 import com.example.shoshaplaystation.databinding.FragmentHomeBinding
 import com.example.shoshaplaystation.util.DeviceCountChangeListener
 import com.example.trainlivelocation.utli.DeviceCustomAdapter
 import com.example.trainlivelocation.utli.DeviceListener
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,6 +41,8 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
             .apply {
 
             }
+        binding!!.homeRcvDevices.itemAnimator= SlideInLeftAnimator()
+        binding!!.homeRcvDevices.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
         binding!!.homeAddDevciesButton.setOnClickListener{
             val bottomSheetDialogFragment = AddDevicesDialog(this)
             bottomSheetDialogFragment.show(childFragmentManager, "AddDevicesDialog")
@@ -73,7 +78,7 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
     }
 
     override fun onDeviceLongClicked(device: DeviceEntity): Boolean {
-        val bottomSheetDialogFragment = DeleteDeviceDialog(this)
+        val bottomSheetDialogFragment = DeleteDeviceDialog(this,device)
         bottomSheetDialogFragment.show(childFragmentManager, "DeleteDeviceDialog")
         return true
     }
