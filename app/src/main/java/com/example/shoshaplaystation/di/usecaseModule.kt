@@ -33,4 +33,5 @@ object usecaseModule {
     fun provideGetLastDeviceNumber(userRepo: UserRepo):GetLastDeviceNumber{
         return GetLastDeviceNumber(userRepo)
     }
+
 }

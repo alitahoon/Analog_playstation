@@ -41,7 +41,6 @@ class DeviceCustomAdapter(private val deviceListener: DeviceListener) :
         holder.itemView.setOnLongClickListener {
          deviceListener.onDeviceLongClicked(device)
         }
-        notifyItemInserted(position)
     }
     fun remove(position: Int) {
         devicesArrayList.removeAt(position)

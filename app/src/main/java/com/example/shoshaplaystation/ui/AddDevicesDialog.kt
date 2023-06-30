@@ -2,6 +2,7 @@ package com.example.shoshaplaystation.ui
 
 import Resource
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +35,7 @@ class AddDevicesDialog (private val listener: DeviceCountChangeListener): Bottom
             .apply {
 
             }
+        addDevicePresenter.getLastDeviceNumberFromDatabase()
         binding!!.addDevicesBtnAdd.setOnClickListener{
             addDevicePresenter.insertNewDeviceToDatabase(DeviceEntity(deviceNumber = binding!!.addDeviceNumberPicker.value.toInt()))
         }
@@ -60,6 +62,23 @@ class AddDevicesDialog (private val listener: DeviceCountChangeListener): Bottom
                 listener.onDeviceAdded()
                 toast("Device data added successfully")
                 dismiss()
+            }
+
+            else -> {}
+        }
+    }
+
+    override fun getLastDeviceNumber(result: Resource<Int>) {
+        when (result){
+            is Resource.Loading->{
+                Log.i(TAG,"waiting ....")
+            }
+            is Resource.Failure->{
+                Log.e(TAG,"${result.error}")
+            }
+            is Resource.Success->{
+                Log.i(TAG,"${result.data}")
+                binding!!.addDeviceNumberPicker.value=result.data
             }
 
             else -> {}
