@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.CustomTimePickerDialog"
+    android:orientation="vertical"
+    android:background="@drawable/reduis_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/_15sdp"
+        android:background="@drawable/reduis_background_third_color">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/timePickerBtnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#0093BFCF"
+            android:text="Cancel"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_close_24"
+             />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_weight="1"
+            android:id="@+id/timePickerBtnSave"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="#0093BFCF"
+            android:text="Save"
+            android:textSize="@dimen/_14ssp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/baseline_done_24"
+            />
+    </LinearLayout>
+    <TimePicker
+        android:id="@+id/timePicker_picker"
+        android:background="@drawable/reduis_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numbersBackgroundColor="@color/white"
+        android:numbersSelectorColor="@color/greenButton"
+        android:headerBackground="@color/third"
+        android:numbersTextColor="@color/primeryColor" />
+</LinearLayout>

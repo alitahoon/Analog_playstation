@@ -1,14 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.AddPlaystationReservation">
+    tools:context=".ui.AddPlaystationReservation"
+    android:padding="@dimen/_15sdp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/baseline_access_time_24"
+        android:drawablePadding="@dimen/_5sdp"
+        android:text="Start Time : "
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/materialButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/materialButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/greenButton"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/_30sdp"
+        android:text="Choose Time"
+        android:textColor="@color/white"
+        app:icon="@drawable/baseline_access_time_24"
+        app:iconGravity="start"
+        app:iconSize="@dimen/_30sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:drawableStart="@drawable/baseline_access_time_24"
+        android:drawablePadding="@dimen/_5sdp"
+        android:text="Duration : "
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/numberPicker"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView2"
+        app:layout_constraintStart_toEndOf="@+id/txtView2"
+        app:layout_constraintTop_toTopOf="@+id/txtView2"
+        app:np_selectedTextSize="@dimen/_14ssp"
+        app:np_textSize="@dimen/_12ssp" />
+
+    <TextView
+        android:id="@+id/txtView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" hrs : "
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView2"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker"
+        app:layout_constraintTop_toTopOf="@+id/txtView2" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView2"
+        app:layout_constraintStart_toEndOf="@+id/txtView3"
+        app:layout_constraintTop_toTopOf="@+id/txtView2"
+        app:np_selectedTextSize="@dimen/_14ssp"
+        app:np_textSize="@dimen/_12ssp" />
+
+    <TextView
+        android:id="@+id/txtView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" min"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/txtView2"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker2"
+        app:layout_constraintTop_toTopOf="@+id/txtView2" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/numberPicker"
+        tools:layout_editor_absoluteX="19dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/multi" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:letterSpacing="0.1"
+            android:text="Single"
+            android:textColor="@color/iconColor"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/multi2" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:letterSpacing="0.1"
+            android:text="Multi"
+            android:textColor="@color/iconColor"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:backgroundTint="@color/greenButton"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:text="Start"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

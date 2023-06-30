@@ -78,7 +78,11 @@ class AddDevicesDialog (private val listener: DeviceCountChangeListener): Bottom
             }
             is Resource.Success->{
                 Log.i(TAG,"${result.data}")
-                binding!!.addDeviceNumberPicker.value=result.data
+                if (result.data==null){
+                    binding!!.addDeviceNumberPicker.value=1
+                }else{
+                    binding!!.addDeviceNumberPicker.value=result.data +1
+                }
             }
 
             else -> {}

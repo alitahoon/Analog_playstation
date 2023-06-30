@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.example.shoshaplaystation.R
 import com.example.shoshaplaystation.databinding.FragmentAddDeviceBinding
 import com.example.shoshaplaystation.databinding.FragmentAddPlaystationReservationBinding
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import javax.inject.Inject
 
 
@@ -42,4 +44,6 @@ class AddPlaystationReservation : Fragment() ,AddPlaystationReservationView{
     override fun onAddPlaystationReservation() {
 
     }
+
+
 }

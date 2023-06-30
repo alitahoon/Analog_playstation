@@ -61,6 +61,8 @@ dependencies {
     implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
     implementation 'io.github.ShawnLin013:number-picker:2.4.13'
     implementation 'jp.wasabeef:recyclerview-animators:4.0.2'
+    implementation 'com.wdullaer:materialdatetimepicker:4.2.3'
+    implementation 'com.google.android.material:material:1.9.0'
 
     implementation 'androidx.core:core-ktx:1.10.1'
     implementation 'androidx.appcompat:appcompat:1.6.1'

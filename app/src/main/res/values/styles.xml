@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomTimePickerTheme" parent="Theme.MaterialComponents.Light.Dialog">
+        <!-- Customize the colorAccent to your desired color -->
+        <item name="colorAccent">@color/primeryColor</item>
+    </style>
+</resources>
