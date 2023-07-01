@@ -1,3 +1,7 @@
 package com.example.domain.entity
 
-data class Device (val id:Int?)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Device (val id:Long?,val number:Int?) : Parcelable

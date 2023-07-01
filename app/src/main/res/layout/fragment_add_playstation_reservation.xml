@@ -16,12 +16,12 @@
         android:text="Start Time : "
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/materialButton"
+        app:layout_constraintBottom_toBottomOf="@+id/addPlaystationReservationBtnChooseStartTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
+        android:id="@+id/addPlaystationReservationBtnChooseStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/greenButton"
@@ -47,7 +47,7 @@
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+        app:layout_constraintTop_toBottomOf="@+id/addPlaystationReservationBtnChooseStartTime" />
 
     <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/numberPicker"

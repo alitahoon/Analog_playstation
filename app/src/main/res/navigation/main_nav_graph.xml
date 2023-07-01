@@ -8,5 +8,22 @@
         android:id="@+id/home7"
         android:name="com.example.shoshaplaystation.ui.Home"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home7_to_addPlaystationReservation"
+            app:destination="@id/addPlaystationReservation"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPlaystationReservation"
+        android:name="com.example.shoshaplaystation.ui.AddPlaystationReservation"
+        android:label="fragment_add_playstation_reservation"
+        tools:layout="@layout/fragment_add_playstation_reservation" >
+        <argument
+            android:name="device"
+            app:argType="com.example.domain.entity.Device" />
+    </fragment>
 </navigation>

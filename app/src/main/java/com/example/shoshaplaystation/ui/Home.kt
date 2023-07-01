@@ -8,7 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
+import androidx.navigation.fragment.findNavController
+import com.example.domain.entity.Device
 import com.example.domain.entity.DeviceEntity
+import com.example.shoshaplaystation.R
 import com.example.shoshaplaystation.databinding.FragmentHomeBinding
 import com.example.shoshaplaystation.util.DeviceCountChangeListener
 import com.example.trainlivelocation.utli.DeviceCustomAdapter
@@ -75,6 +78,8 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
     }
 
     override fun onDeviceClicked(device: DeviceEntity) {
+        val action= HomeDirections.actionHome7ToAddPlaystationReservation(Device(device.id,device.deviceNumber))
+        findNavController().navigate(action)
     }
 
     override fun onDeviceLongClicked(device: DeviceEntity): Boolean {
