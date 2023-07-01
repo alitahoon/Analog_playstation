@@ -3,6 +3,7 @@ package com.example.domain.repo
 import Resource
 import com.example.domain.entity.Device
 import com.example.domain.entity.DeviceEntity
+import com.example.domain.entity.PlaystationReservationEntity
 
 interface UserRepo {
     suspend fun insertDeviceToDatabase(
@@ -15,4 +16,5 @@ interface UserRepo {
 
     suspend fun deleteDeviceFromDatabaseByID(id:Long?,result: (Resource<String>) -> Unit)
     suspend fun getLastDeviceNumber(result: (Resource<Int>) -> Unit)
+    suspend fun insertNewPlaystationReservation(playstationReservationEntity: PlaystationReservationEntity,result: (Resource<String>) -> Unit)
 }

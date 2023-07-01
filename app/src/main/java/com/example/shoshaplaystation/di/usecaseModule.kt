@@ -1,10 +1,7 @@
 package com.example.shoshaplaystation.di
 
 import com.example.domain.repo.UserRepo
-import com.example.domain.usercases.DeleteDeviceFromDatabaseByID
-import com.example.domain.usercases.GetDevicesFromDatabase
-import com.example.domain.usercases.GetLastDeviceNumber
-import com.example.domain.usercases.InsertDeviceToDatabase
+import com.example.domain.usercases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,6 +29,11 @@ object usecaseModule {
     @Provides
     fun provideGetLastDeviceNumber(userRepo: UserRepo):GetLastDeviceNumber{
         return GetLastDeviceNumber(userRepo)
+    }
+
+    @Provides
+    fun provideInsertNewPlaystationReservation(userRepo: UserRepo):InsertNewPlaystationReservation{
+        return InsertNewPlaystationReservation(userRepo)
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.data.repo
 import Resource
 import com.example.data.MyDatabase
 import com.example.domain.entity.DeviceEntity
+import com.example.domain.entity.PlaystationReservationEntity
 import com.example.domain.repo.UserRepo
 
 
@@ -59,5 +60,13 @@ class userRepoImpl(
             result.invoke(Resource.Failure("Failed getting StationAlarmsFromDatabase ---> ${e.message}"))
         }
     }
+
+    override suspend fun insertNewPlaystationReservation(playstationReservationEntity: PlaystationReservationEntity, result: (Resource<String>) -> Unit) {
+        try {
+            myDatabase.PlaystationReservationEntityDao().insertPlaystationReservationEntity(playstationReservationEntity)
+            result.invoke(Resource.Success("Successfully added playstationReservationEntity data item in database"))
+        } catch (e: Exception) {
+            result.invoke(Resource.Failure("Failed inserting playstationReservationEntity ---> ${e.message}"))
+        }    }
 
 }
