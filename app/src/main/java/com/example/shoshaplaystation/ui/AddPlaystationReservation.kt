@@ -1,7 +1,6 @@
 package com.example.shoshaplaystation.ui
 
 import Resource
-import android.bluetooth.BluetoothClass
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +11,8 @@ import android.widget.RadioButton
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import com.example.domain.entity.PlaystationReservationEntity
 import com.example.domain.entity.Device
+import com.example.domain.entity.PlaystationReservationEntity
 import com.example.shoshaplaystation.databinding.FragmentAddPlaystationReservationBinding
 import com.example.shoshaplaystation.util.CustomTimePickerDialogListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -57,9 +56,12 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
 
             // Get the text of the selected RadioButton
             val selectedText = selectedRadioButton.text.toString()
+            reservationType=selectedText
             when(selectedText){
                 "Single"->{
-
+                    reservationPrice=
+                        reservationHours?.times(15)?.plus(reservationMinutes?.div(60)!!.times(15))!!.toDouble()
+                    Log.i(TAG,"price $reservationPrice")
                 }
                 "Multi"->{
 
@@ -76,7 +78,8 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
                     deviceId = device!!.id!!,
                     CurrantDate = LocalDate.now().toString(),
                     startTime = binding!!.addPlaystationReservationBtnChooseStartTime.text.toString(),
-                    reservationType =
+                    reservationType = reservationType!!,
+                    price = reservationPrice!!
                 )
             )
         }
@@ -84,7 +87,10 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
     }
 
     companion object {
-
+        private var reservationPrice:Double?=0.0
+        private var reservationType:String?=null
+        private var reservationHours:Int?=0
+        private var reservationMinutes:Int?=0
     }
 
 
