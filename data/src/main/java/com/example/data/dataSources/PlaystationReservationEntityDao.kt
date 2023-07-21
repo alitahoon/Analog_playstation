@@ -1,13 +1,15 @@
 package com.example.data.dataSources
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import com.example.domain.entity.DeviceEntity
+import androidx.room.*
 import com.example.domain.entity.PlaystationReservationEntity
 @Dao
 interface PlaystationReservationEntityDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertPlaystationReservationEntity(playstationReservationEntity: PlaystationReservationEntity)
+
+    @Query("SELECT * FROM PlaystationReservationEntity")
+    @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
+    fun getPlaystationReservationEntities(): List<PlaystationReservationEntity>
+
 }

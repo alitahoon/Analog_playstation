@@ -23,6 +23,20 @@ class userRepoImpl(
         }
     }
 
+    override suspend fun getAllPlaystationReservations(result: (Resource<ArrayList<PlaystationReservationEntity>>) -> Unit) {
+        try {
+            result.invoke(
+                Resource.Success(
+                    ArrayList(
+                        myDatabase.PlaystationReservationEntityDao().getPlaystationReservationEntities()
+                    )
+                )
+            )
+        } catch (e: Exception) {
+            result.invoke(Resource.Failure("Failed  getting Playstation Reservation Entities ---> ${e.message}"))
+        }
+    }
+
     override suspend fun getDevicesFromDatabase(result: (Resource<ArrayList<DeviceEntity>>) -> Unit) {
         try {
             result.invoke(

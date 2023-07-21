@@ -35,5 +35,9 @@ object usecaseModule {
     fun provideInsertNewPlaystationReservation(userRepo: UserRepo):InsertNewPlaystationReservation{
         return InsertNewPlaystationReservation(userRepo)
     }
+    @Provides
+    fun provideGetAllPlaystationReservations(userRepo: UserRepo):GetAllPlaystationReservations{
+        return GetAllPlaystationReservations(userRepo)
+    }
 
 }

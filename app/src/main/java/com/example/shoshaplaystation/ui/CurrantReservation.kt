@@ -1,16 +1,22 @@
 package com.example.shoshaplaystation.ui
 
+import Resource
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.shoshaplaystation.R
+import com.example.domain.entity.PlaystationReservationEntity
+import com.example.shoshaplaystation.databinding.FragmentCurrantReservationBinding
+import com.example.shoshaplaystation.util.PlaystationReservationCustomAdapter
+import com.example.shoshaplaystation.util.PlaystationReservationListener
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CurrantReservation : Fragment() {
+class CurrantReservation : Fragment() ,PlaystationReservationListener,CurrantReservationView{
     private val TAG="CurrantReservation"
+    private var binding:FragmentCurrantReservationBinding?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -22,11 +28,42 @@ class CurrantReservation : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_currant_reservation, container, false)
+        binding= FragmentCurrantReservationBinding.inflate(inflater,container,false)
+            .apply {
+
+            }
+
+
+        return binding!!.root
     }
 
     companion object {
 
+    }
+
+    override fun onDeviceClicked(reservation: PlaystationReservationEntity) {
+
+    }
+
+    override fun onDeviceLongClicked(reservation: PlaystationReservationEntity): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onGettingReservations(result: Resource<ArrayList<PlaystationReservationEntity>>) {
+        when(result){
+            is Resource.Loading->{
+                Log.i(TAG,"getting reservations")
+            }
+            is Resource.Failure->{
+                Log.e(TAG,"${result.error}")
+            }
+            is Resource.Success->{
+                Log.e(TAG,"${result.data}")
+                val adapter=PlaystationReservationCustomAdapter(this)
+                adapter.setData(result.data)
+                binding!!.currantReservationRCV.adapter=adapter
+            }
+            else -> {}
+        }
     }
 }
