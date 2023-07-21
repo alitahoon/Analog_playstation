@@ -1,11 +1,10 @@
 package com.example.shoshaplaystation.ui
 
 import Resource
-import com.example.domain.entity.Device
 import com.example.domain.entity.DeviceEntity
-import com.example.domain.usercases.GetDevicesFromDatabase
-import com.example.domain.usercases.GetLastDeviceNumber
-import com.example.domain.usercases.InsertDeviceToDatabase
+import com.example.domain.usecases.GetDevicesFromDatabase
+import com.example.domain.usecases.GetLastDeviceNumber
+import com.example.domain.usecases.InsertDeviceToDatabase
 import kotlinx.coroutines.*
 import javax.inject.Inject
 

@@ -1,7 +1,7 @@
 package com.example.shoshaplaystation.di
 
 import com.example.domain.repo.UserRepo
-import com.example.domain.usercases.*
+import com.example.domain.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -4,4 +4,4 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Device (val id:Long?,val number:Int?) : Parcelable
+data class Device (val id:Int?,val number:Int?) : Parcelable

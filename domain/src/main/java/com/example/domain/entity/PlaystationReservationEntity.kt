@@ -4,7 +4,6 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.util.Date
 
 
 @Entity(tableName = "PlaystationReservationEntity",
@@ -23,5 +22,6 @@ class PlaystationReservationEntity (
     @ColumnInfo(name = "deviceId") val deviceId: Int,
     @ColumnInfo(name = "currantDate") val CurrantDate: String,
     @ColumnInfo(name = "startTime") val startTime: String,
-    @ColumnInfo(name = "reservationType") val reservation: String,
+    @ColumnInfo(name = "price") val price: Double,
+    @ColumnInfo(name = "reservationType") val reservationType: String,
 )

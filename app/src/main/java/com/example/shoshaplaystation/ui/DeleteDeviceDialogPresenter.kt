@@ -1,7 +1,7 @@
 package com.example.shoshaplaystation.ui
 
 import com.example.domain.entity.DeviceEntity
-import com.example.domain.usercases.DeleteDeviceFromDatabaseByID
+import com.example.domain.usecases.DeleteDeviceFromDatabaseByID
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope

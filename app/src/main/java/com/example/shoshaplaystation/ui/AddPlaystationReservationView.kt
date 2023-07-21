@@ -1,5 +1,7 @@
 package com.example.shoshaplaystation.ui
 
+import Resource
+
 interface AddPlaystationReservationView {
-    fun onAddPlaystationReservation()
+    fun onAddPlaystationReservation(result: Resource<String>)
 }

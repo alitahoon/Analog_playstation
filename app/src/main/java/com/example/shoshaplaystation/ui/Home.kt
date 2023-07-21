@@ -93,7 +93,7 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
 
     override fun onDeviceClicked(device: DeviceEntity) {
         findNavController().navigate(HomeDirections.actionHome2ToAddPlaystationReservation(
-            Device(device.id,device.deviceNumber)
+            Device(device.id.toInt(),device.deviceNumber)
         ))
     }
 

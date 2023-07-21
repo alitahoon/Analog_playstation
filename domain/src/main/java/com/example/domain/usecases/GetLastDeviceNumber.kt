@@ -1,4 +1,4 @@
-package com.example.domain.usercases
+package com.example.domain.usecases
 
 import Resource
 import com.example.domain.repo.UserRepo
