@@ -3,17 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="device"
             type="com.example.domain.entity.DeviceEntity" />
         <variable
             name="listener"
             type="com.example.trainlivelocation.utli.DeviceListener" />
+
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:longClickable="true"
         android:layout_width="@dimen/_100sdp"
+        android:onClick="@{() -> listener.onDeviceClicked(device)}"
         android:layout_height="@dimen/_100sdp"
         app:cardCornerRadius="@dimen/_30sdp"
         android:layout_margin="@dimen/_15sdp">
@@ -28,11 +31,13 @@
             android:background="@color/secondory">
 
             <ImageView
+                android:id="@+id/deviceItemImage"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:src="@drawable/controller" />
 
             <TextView
+                android:id="@+id/deviceItemTitle"
                 android:textColor="@color/primeryColor"
                 android:textStyle="bold"
                 android:letterSpacing="0.1"

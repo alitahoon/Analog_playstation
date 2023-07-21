@@ -21,7 +21,7 @@ class PlaystationReservationEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     @ColumnInfo(name = "deviceId") val deviceId: Int,
-    @ColumnInfo(name = "currantDate") val CurrantDate: Date,
-    @ColumnInfo(name = "startTime") val startTime: Date,
+    @ColumnInfo(name = "currantDate") val CurrantDate: String,
+    @ColumnInfo(name = "startTime") val startTime: String,
     @ColumnInfo(name = "reservationType") val reservation: String,
 )

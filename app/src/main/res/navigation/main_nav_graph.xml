@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/home7">
+    app:startDestination="@id/home2">
+
     <fragment
-        android:id="@+id/home7"
+        android:id="@+id/home2"
         android:name="com.example.shoshaplaystation.ui.Home"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Home" >
         <action
-            android:id="@+id/action_home7_to_addPlaystationReservation"
+            android:id="@+id/action_home2_to_addPlaystationReservation"
             app:destination="@id/addPlaystationReservation"
             app:enterAnim="@anim/enter"
             app:exitAnim="@anim/exit"

@@ -1,16 +1,12 @@
 package com.example.shoshaplaystation.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.shoshaplaystation.R
-import com.example.shoshaplaystation.databinding.FragmentAddDeviceBinding
+import androidx.fragment.app.Fragment
 import com.example.shoshaplaystation.databinding.FragmentAddPlaystationReservationBinding
 import com.example.shoshaplaystation.util.CustomTimePickerDialogListener
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 import javax.inject.Inject
 
 
@@ -37,6 +33,8 @@ class AddPlaystationReservation : Fragment() ,AddPlaystationReservationView,Cust
             val bottomSheetDialogFragment = CustomTimePickerDialog(this)
             bottomSheetDialogFragment.show(childFragmentManager, "CustomTimePickerDialog")
         }
+        addPlaystationReservationPresenter.attachView(this)
+
         return binding!!.root
     }
 

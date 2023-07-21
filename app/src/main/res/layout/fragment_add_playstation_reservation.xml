@@ -13,8 +13,10 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/baseline_access_time_24"
         android:drawablePadding="@dimen/_5sdp"
+        android:textColor="@color/iconColor"
         android:text="Start Time : "
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
+        android:gravity="center|start"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/addPlaystationReservationBtnChooseStartTime"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +26,10 @@
         android:id="@+id/addPlaystationReservationBtnChooseStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/greenButton"
+        android:backgroundTint="@color/primeryColor"
         android:gravity="center"
+        android:textSize="@dimen/_10ssp"
+        app:iconTint="@color/white"
         android:paddingHorizontal="@dimen/_30sdp"
         android:text="Choose Time"
         android:textColor="@color/white"
@@ -39,12 +43,14 @@
     <TextView
         android:id="@+id/txtView2"
         android:layout_width="wrap_content"
+        android:textColor="@color/iconColor"
         android:layout_height="wrap_content"
+        android:gravity="center|start"
         android:layout_marginTop="@dimen/_60sdp"
         android:drawableStart="@drawable/baseline_access_time_24"
         android:drawablePadding="@dimen/_5sdp"
         android:text="Duration : "
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addPlaystationReservationBtnChooseStartTime" />
@@ -52,12 +58,13 @@
     <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/numberPicker"
         android:layout_width="@dimen/_50sdp"
-        android:layout_height="wrap_content"
+        app:np_textColor="#63CFFA"
+        android:layout_height="@dimen/_90sdp"
         android:layout_marginStart="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
         app:layout_constraintStart_toEndOf="@+id/txtView2"
         app:layout_constraintTop_toTopOf="@+id/txtView2"
-        app:np_selectedTextSize="@dimen/_14ssp"
+        app:np_selectedTextSize="@dimen/_10ssp"
         app:np_textSize="@dimen/_12ssp" />
 
     <TextView
@@ -65,7 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" hrs : "
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
+        android:textColor="@color/iconColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
         app:layout_constraintStart_toEndOf="@+id/numberPicker"
@@ -74,11 +82,12 @@
     <com.shawnlin.numberpicker.NumberPicker
         android:id="@+id/numberPicker2"
         android:layout_width="@dimen/_50sdp"
-        android:layout_height="wrap_content"
+        app:np_textColor="#63CFFA"
+        android:layout_height="@dimen/_90sdp"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
         app:layout_constraintStart_toEndOf="@+id/txtView3"
         app:layout_constraintTop_toTopOf="@+id/txtView2"
-        app:np_selectedTextSize="@dimen/_14ssp"
+        app:np_selectedTextSize="@dimen/_12ssp"
         app:np_textSize="@dimen/_12ssp" />
 
     <TextView
@@ -86,13 +95,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=" min"
-        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/iconColor"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
         app:layout_constraintStart_toEndOf="@+id/numberPicker2"
         app:layout_constraintTop_toTopOf="@+id/txtView2" />
 
     <RadioGroup
+        android:layout_marginTop="@dimen/_20sdp"
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -132,10 +143,11 @@
     </RadioGroup>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/addPlaystationReservationBtnStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_30sdp"
-        android:backgroundTint="@color/greenButton"
+        android:backgroundTint="@color/primeryColor"
         android:paddingHorizontal="@dimen/_15sdp"
         android:text="Start"
         android:textColor="@color/white"

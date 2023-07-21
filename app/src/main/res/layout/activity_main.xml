@@ -59,10 +59,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/main_nav_graph"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_anchor="@id/homeActionBar"
-        app:layout_anchorGravity="bottom"/>
+        app:layout_anchorGravity="bottom"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:navGraph="@navigation/main_nav_graph"
+        tools:layout="@layout/activity_main" />
+
+
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:id="@+id/mainBottomNavigation"

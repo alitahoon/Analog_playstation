@@ -5,11 +5,8 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
-import com.example.shoshaplaystation.R
 import com.example.shoshaplaystation.databinding.ActivitySplashBinding
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 
 @AndroidEntryPoint
 class splash : AppCompatActivity() {

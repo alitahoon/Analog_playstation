@@ -46,6 +46,9 @@ class DeleteDeviceDialog(
         binding!!.deleteDeviceBtnYes.setOnClickListener {
             deleteDeviceDialogPresenter.deleteDeviceFromDatabase(device)
         }
+        binding!!.deleteDeviceBtnNo.setOnClickListener{
+            dismiss()
+        }
 
         return binding!!.root
     }

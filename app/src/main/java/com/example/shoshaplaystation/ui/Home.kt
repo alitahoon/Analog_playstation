@@ -3,22 +3,18 @@ package com.example.shoshaplaystation.ui
 import Resource
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.OvershootInterpolator
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.domain.entity.Device
 import com.example.domain.entity.DeviceEntity
-import com.example.shoshaplaystation.R
 import com.example.shoshaplaystation.databinding.FragmentHomeBinding
 import com.example.shoshaplaystation.util.DeviceCountChangeListener
 import com.example.trainlivelocation.utli.DeviceCustomAdapter
 import com.example.trainlivelocation.utli.DeviceListener
 import dagger.hilt.android.AndroidEntryPoint
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -26,14 +22,14 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
     private var binding:FragmentHomeBinding?=null
     private val TAG="Home"
 
+
     @Inject
     lateinit var  homePresenter:HomePresenter
 
     private var adapter:DeviceCustomAdapter= DeviceCustomAdapter(this)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homePresenter.attachView(this)
-        homePresenter.getDevices()
+
     }
 
     override fun onCreateView(
@@ -44,12 +40,13 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
             .apply {
 
             }
-        binding!!.homeRcvDevices.itemAnimator= SlideInLeftAnimator()
-        binding!!.homeRcvDevices.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
+        homePresenter.attachView(this)
+        homePresenter.getDevices()
+//        binding!!.homeRcvDevices.itemAnimator= SlideInLeftAnimator()
+//        binding!!.homeRcvDevices.itemAnimator= SlideInUpAnimator(OvershootInterpolator(1f))
         binding!!.homeAddDevciesButton.setOnClickListener{
             val bottomSheetDialogFragment = AddDevicesDialog(this)
-            bottomSheetDialogFragment.show(childFragmentManager, "AddDevicesDialog")
-
+            bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "AddDevicesDialog")
         }
         return binding!!.root
     }
@@ -59,10 +56,15 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
     }
 
     override fun getDevicesFromDatabase(result: Resource<ArrayList<DeviceEntity>>) {
+        var diffultItem= arrayListOf<DeviceEntity>()
+        diffultItem.add(DeviceEntity(deviceNumber = 0))
         when (result){
             is Resource.Success->{
                 Log.i(TAG,"${result.data}")
                 adapter.setData(result.data)
+                if (result.data.isEmpty()){
+                    adapter.setData(diffultItem)
+                }
                 binding!!.homeRcvDevices.adapter=adapter
             }
             is Resource.Failure->{
@@ -77,9 +79,22 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
         }
     }
 
+//    override fun onDeviceClicked(device: DeviceEntity) {
+////        val bundle = Bundle()
+////        val navOptions = NavOptions.Builder()
+////            .setEnterAnim(R.anim.enter) // Specify the animation resource for enter animation
+////            .setExitAnim(R.anim.exit) // Specify the animation resource for exit animation
+////            .setPopEnterAnim(R.anim.pop_enter) // Specify the animation resource for pop enter animation
+////            .setPopExitAnim(R.anim.pop_exit) // Specify the animation resource for pop exit animation
+////            .build()
+////        bundle.putParcelable("device", Device(device.id,device.deviceNumber))
+////        findNavController().navigate(R.id.addPlaystationReservation,bundle,navOptions)
+//    }
+
     override fun onDeviceClicked(device: DeviceEntity) {
-        val action= HomeDirections.actionHome7ToAddPlaystationReservation(Device(device.id,device.deviceNumber))
-        findNavController().navigate(action)
+        findNavController().navigate(HomeDirections.actionHome2ToAddPlaystationReservation(
+            Device(device.id,device.deviceNumber)
+        ))
     }
 
     override fun onDeviceLongClicked(device: DeviceEntity): Boolean {
