@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.data.dataSources.DeviceEntityDao
 import com.example.data.dataSources.PlaystationReservationEntityDao
-import com.example.domain.entity.*
+import com.example.domain.entity.DeviceEntity
+import com.example.domain.entity.PlaystationReservationEntity
 
 @Database(
     entities = [DeviceEntity::class,PlaystationReservationEntity::class],
-    version = 2
+    version = 3
 )
 abstract class MyDatabase : RoomDatabase() {
 

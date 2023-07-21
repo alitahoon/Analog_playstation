@@ -50,6 +50,19 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
             bottomSheetDialogFragment.show(childFragmentManager, "CustomTimePickerDialog")
         }
 
+        binding!!.addPlaystationReservationtxtHours.setOnValueChangedListener{ _, _, newVal ->
+            // Do something with the selected value (newVal)
+            // For example, show it in a toast message:
+            reservationHours=newVal.toDouble()
+            Toast.makeText(requireContext(), "Selected Hours: $newVal", Toast.LENGTH_SHORT).show()
+        }
+        binding!!.addPlaystationReservationtxtMinutes.setOnValueChangedListener{ _, _, newVal ->
+            // Do something with the selected value (newVal)
+            // For example, show it in a toast message:
+            reservationMinutes=newVal.toDouble()
+            Toast.makeText(requireContext(), "Selected Minutes: $newVal", Toast.LENGTH_SHORT).show()
+        }
+
         binding!!.addPlaystationReservationTyperadioGroup.setOnCheckedChangeListener { _, checkedId ->
             // Get the selected RadioButton
             val selectedRadioButton: RadioButton = requireActivity().findViewById(checkedId)
@@ -59,12 +72,16 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
             reservationType=selectedText
             when(selectedText){
                 "Single"->{
+                    var minutesPrice=(reservationMinutes/60)*15
                     reservationPrice=
-                        reservationHours?.times(15)?.plus(reservationMinutes?.div(60)!!.times(15))!!.toDouble()
+                        reservationHours?.times(15)?.plus(minutesPrice)!!.toDouble()
                     Log.i(TAG,"price $reservationPrice")
                 }
                 "Multi"->{
-
+                    var minutesPrice=(reservationMinutes/60)*25
+                    reservationPrice=
+                        reservationHours?.times(25)?.plus(minutesPrice)!!.toDouble()
+                    Log.i(TAG,"price $reservationPrice")
                 }
             }
 
@@ -87,10 +104,10 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
     }
 
     companion object {
-        private var reservationPrice:Double?=0.0
+        private var reservationPrice:Double=0.0
         private var reservationType:String?=null
-        private var reservationHours:Int?=0
-        private var reservationMinutes:Int?=0
+        private var reservationHours:Double=0.0
+        private var reservationMinutes:Double=0.0
     }
 
 

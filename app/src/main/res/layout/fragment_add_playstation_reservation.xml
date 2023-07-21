@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addPlaystationReservationBtnChooseStartTime" />
 
     <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/numberPicker"
+        android:id="@+id/addPlaystationReservationtxtHours"
         android:layout_width="@dimen/_50sdp"
         app:np_textColor="#63CFFA"
         android:layout_height="@dimen/_90sdp"
@@ -76,11 +76,11 @@
         android:textColor="@color/iconColor"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
-        app:layout_constraintStart_toEndOf="@+id/numberPicker"
+        app:layout_constraintStart_toEndOf="@+id/addPlaystationReservationtxtHours"
         app:layout_constraintTop_toTopOf="@+id/txtView2" />
 
     <com.shawnlin.numberpicker.NumberPicker
-        android:id="@+id/numberPicker2"
+        android:id="@+id/addPlaystationReservationtxtMinutes"
         android:layout_width="@dimen/_50sdp"
         app:np_textColor="#63CFFA"
         android:layout_height="@dimen/_90sdp"
@@ -99,7 +99,7 @@
         android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/txtView2"
-        app:layout_constraintStart_toEndOf="@+id/numberPicker2"
+        app:layout_constraintStart_toEndOf="@+id/addPlaystationReservationtxtMinutes"
         app:layout_constraintTop_toTopOf="@+id/txtView2" />
 
     <RadioGroup
@@ -108,7 +108,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/numberPicker"
+        app:layout_constraintTop_toBottomOf="@+id/addPlaystationReservationtxtHours"
         tools:layout_editor_absoluteX="19dp">
 
         <ImageView
@@ -154,7 +154,7 @@
         android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/addPlaystationReservationTyperadioGroup" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
