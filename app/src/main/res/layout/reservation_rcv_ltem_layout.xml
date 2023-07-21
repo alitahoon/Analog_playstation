@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:backgroundTint="@color/primeryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_15sdp">
+
+            <TextView
+                android:drawableStart="@drawable/controller2_white"
+                android:drawablePadding="@dimen/_5sdp"
+
+                android:id="@+id/reservationItemTxtDeviceNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:text="Device 1"
+                android:gravity="center|start"
+                android:letterSpacing="0.1"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp" />
+
+            <TextView
+                android:gravity="center|start"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/reservationItemTxtReamingTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/baseline_access_time_24_white"
+                android:drawablePadding="@dimen/_5sdp"
+                android:layout_below="@+id/reservationItemTxtDeviceNumber"
+                android:text="Remaining Time : 00:00"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/reservationItemTxtPrice"
+                android:layout_width="wrap_content"
+                android:gravity="center|start"
+                android:drawableStart="@drawable/baseline_attach_money_24"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reservationItemTxtReamingTime"
+                android:text="Price : 00:00 EGP"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+            <TextView
+                android:gravity="center|start"
+                android:drawableStart="@drawable/multi_white"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:id="@+id/reservationItemTxtReservationType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reservationItemTxtPrice"
+                android:text="Type : Single"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
