@@ -43,9 +43,9 @@ class userRepoImpl(
     ) {
         try {
             myDatabase.PlaystationReservationEntityDao().update(playstationReservationEntity)
-            result.invoke(Resource.Success("Successfully deleted device"))
+            result.invoke(Resource.Success("Successfully Updated Playstation reservation device"))
         } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed deleting device ---> ${e.message}"))
+            result.invoke(Resource.Failure("Failed Updated Playstation reservation---> ${e.message}"))
         }
     }
 
