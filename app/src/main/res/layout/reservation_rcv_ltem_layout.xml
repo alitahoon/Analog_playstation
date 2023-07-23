@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:text="Device 1"
+                    setDeviceNumber="@{reservation.deviceId}"
                     android:gravity="center|start"
                     android:letterSpacing="0.1"
                     android:textStyle="bold"
@@ -48,14 +49,15 @@
                     android:textSize="@dimen/_16ssp" />
 
                 <TextView
-                    android:gravity="center|start"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    setRemainingTime="@{reservation.remainingTime}"
                     android:id="@+id/reservationItemTxtReamingTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/reservationItemTxtDeviceNumber"
+                    android:layout_marginTop="14dp"
                     android:drawableStart="@drawable/baseline_access_time_24_white"
                     android:drawablePadding="@dimen/_5sdp"
-                    android:layout_below="@+id/reservationItemTxtDeviceNumber"
+                    android:gravity="center|start"
                     android:text="Remaining Time : 00:00"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14ssp" />
@@ -65,6 +67,7 @@
                     android:id="@+id/reservationItemTxtPrice"
                     android:layout_width="wrap_content"
                     android:gravity="center|start"
+                    setPrice="@{reservation.price}"
                     android:drawableStart="@drawable/baseline_attach_money_24"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/reservationItemTxtReamingTime"
@@ -73,6 +76,7 @@
                     android:textSize="@dimen/_14ssp" />
 
                 <TextView
+                    setType="@{reservation.reservationType}"
                     android:gravity="center|start"
                     android:drawableStart="@drawable/multi_white"
                     android:layout_marginTop="@dimen/_10sdp"

@@ -33,7 +33,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginEnd="@dimen/_30sdp"
-            android:layout_marginBottom="@dimen/_100sdp"
+            android:layout_marginBottom="@dimen/_110sdp"
             android:backgroundTint="@color/primeryColor"
             app:icon="@drawable/baseline_add_24"
             app:iconTint="@color/white"

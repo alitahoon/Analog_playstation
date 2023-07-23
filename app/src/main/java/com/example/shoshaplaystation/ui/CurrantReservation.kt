@@ -12,11 +12,15 @@ import com.example.shoshaplaystation.databinding.FragmentCurrantReservationBindi
 import com.example.shoshaplaystation.util.PlaystationReservationCustomAdapter
 import com.example.shoshaplaystation.util.PlaystationReservationListener
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CurrantReservation : Fragment() ,PlaystationReservationListener,CurrantReservationView{
     private val TAG="CurrantReservation"
     private var binding:FragmentCurrantReservationBinding?=null
+
+    @Inject
+    lateinit var currantReservationPresenter:CurrantReservationPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,7 +36,8 @@ class CurrantReservation : Fragment() ,PlaystationReservationListener,CurrantRes
             .apply {
 
             }
-
+        currantReservationPresenter.attachView(this)
+        currantReservationPresenter!!.getReservations()
 
         return binding!!.root
     }

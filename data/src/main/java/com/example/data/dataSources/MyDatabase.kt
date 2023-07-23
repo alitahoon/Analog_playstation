@@ -11,7 +11,7 @@ import com.example.domain.entity.PlaystationReservationEntity
 
 @Database(
     entities = [DeviceEntity::class,PlaystationReservationEntity::class],
-    version = 3
+    version = 4
 )
 abstract class MyDatabase : RoomDatabase() {
 

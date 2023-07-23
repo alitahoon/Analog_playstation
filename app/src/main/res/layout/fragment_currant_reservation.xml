@@ -7,12 +7,14 @@
     tools:context=".ui.CurrantReservation">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/currantReservationRCV"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/reservation_rcv_ltem_layout"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/reservation_rcv_ltem_layout" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,13 @@
             app:exitAnim="@anim/exit"
             app:popEnterAnim="@anim/pop_enter"
             app:popExitAnim="@anim/pop_exit" />
+        <action
+            android:id="@+id/action_home2_to_currantReservation"
+            app:destination="@id/currantReservation"
+            app:enterAnim="@anim/enter"
+            app:exitAnim="@anim/exit"
+            app:popEnterAnim="@anim/pop_enter"
+            app:popExitAnim="@anim/pop_exit" />
     </fragment>
     <fragment
         android:id="@+id/addPlaystationReservation"
@@ -26,4 +33,9 @@
             android:name="device"
             app:argType="com.example.domain.entity.Device" />
     </fragment>
+    <fragment
+        android:id="@+id/currantReservation"
+        android:name="com.example.shoshaplaystation.ui.CurrantReservation"
+        android:label="fragment_currant_reservation"
+        tools:layout="@layout/fragment_currant_reservation" />
 </navigation>

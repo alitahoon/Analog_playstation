@@ -96,7 +96,8 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
                     CurrantDate = LocalDate.now().toString(),
                     startTime = binding!!.addPlaystationReservationBtnChooseStartTime.text.toString(),
                     reservationType = reservationType!!,
-                    price = reservationPrice!!
+                    price = reservationPrice!!,
+                    remainingTime = (reservationHours*60)+reservationMinutes
                 )
             )
         }

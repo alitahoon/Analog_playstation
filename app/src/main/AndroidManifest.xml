@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.shoshaplaystation">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
 
     <application
         android:name=".shoshaplaystation"
@@ -13,6 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoshaPlaystation"
         tools:targetApi="31">
+        <service android:name=".services.PlaystationReservationService" android:enabled="true"/>
         <activity
             android:name=".ui.splash"
             android:exported="true">

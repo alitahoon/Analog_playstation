@@ -24,4 +24,5 @@ class PlaystationReservationEntity (
     @ColumnInfo(name = "startTime") val startTime: String,
     @ColumnInfo(name = "price") val price: Double,
     @ColumnInfo(name = "reservationType") val reservationType: String,
-)
+    @ColumnInfo(name = "remainingTime") val remainingTime: Double
+    )
