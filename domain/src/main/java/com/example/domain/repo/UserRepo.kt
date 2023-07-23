@@ -17,4 +17,5 @@ interface UserRepo {
     suspend fun getLastDeviceNumber(result: (Resource<Int>) -> Unit)
     suspend fun insertNewPlaystationReservation(playstationReservationEntity: PlaystationReservationEntity,result: (Resource<String>) -> Unit)
     suspend fun  getAllPlaystationReservations(result: (Resource<ArrayList<PlaystationReservationEntity>>) -> Unit)
+    suspend fun updatePlaystationReservation(playstationReservationEntity: PlaystationReservationEntity,result: (Resource<String>) -> Unit)
 }

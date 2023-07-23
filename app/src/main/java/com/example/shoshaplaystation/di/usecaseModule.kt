@@ -40,4 +40,9 @@ object usecaseModule {
         return GetAllPlaystationReservations(userRepo)
     }
 
+    @Provides
+    fun provideUpdatePlaystationReservation(userRepo: UserRepo):UpdatePlaystationReservation{
+        return UpdatePlaystationReservation(userRepo)
+    }
+
 }

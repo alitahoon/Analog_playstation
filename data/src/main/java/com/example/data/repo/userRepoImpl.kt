@@ -37,6 +37,18 @@ class userRepoImpl(
         }
     }
 
+    override suspend fun updatePlaystationReservation(
+        playstationReservationEntity: PlaystationReservationEntity,
+        result: (Resource<String>) -> Unit
+    ) {
+        try {
+            myDatabase.PlaystationReservationEntityDao().update(playstationReservationEntity)
+            result.invoke(Resource.Success("Successfully deleted device"))
+        } catch (e: Exception) {
+            result.invoke(Resource.Failure("Failed deleting device ---> ${e.message}"))
+        }
+    }
+
     override suspend fun getDevicesFromDatabase(result: (Resource<ArrayList<DeviceEntity>>) -> Unit) {
         try {
             result.invoke(

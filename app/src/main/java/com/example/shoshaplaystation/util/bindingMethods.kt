@@ -4,11 +4,15 @@ import android.os.CountDownTimer
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.domain.entity.PlaystationReservationEntity
-import com.example.shoshaplaystation.ui.CurrantReservationPresenter
+import com.example.domain.usecases.UpdatePlaystationReservation
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
 import javax.inject.Inject
 
 @Inject
-lateinit var currantReservationPresenter: CurrantReservationPresenter
+lateinit var updatePlaystationReservation: UpdatePlaystationReservation
+private val coroutineScope: CoroutineScope = MainScope()
+
 @BindingAdapter("setDeviceNumber")
 fun setDeviceNumber(textView: TextView,deviceNumber:Int) {
   textView.setText("Device ${deviceNumber}")

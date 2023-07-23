@@ -12,4 +12,8 @@ interface PlaystationReservationEntityDao {
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
     fun getPlaystationReservationEntities(): List<PlaystationReservationEntity>
 
+
+    @Update
+    fun update(playstationReservationEntity: PlaystationReservationEntity)
+
 }
