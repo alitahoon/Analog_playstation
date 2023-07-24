@@ -19,6 +19,7 @@ class CurrantReservation : Fragment() ,PlaystationReservationListener,CurrantRes
     private val TAG="CurrantReservation"
     private var binding:FragmentCurrantReservationBinding?=null
 
+
     @Inject
     lateinit var currantReservationPresenter:CurrantReservationPresenter
     override fun onCreate(savedInstanceState: Bundle?) {
