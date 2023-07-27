@@ -19,7 +19,7 @@
         android:letterSpacing="0.1"
         android:text="Device 1"
         android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="bold" />
 
     <TextView
@@ -32,18 +32,16 @@
         android:drawableStart="@drawable/baseline_access_time_24_white"
         android:drawablePadding="@dimen/_5sdp"
         android:gravity="center|start"
-        android:layout_marginStart="@dimen/_10sdp"
         android:letterSpacing="0.1"
         android:text="Remaining Time : 00:00:00"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
 />
 
     <TextView
         android:id="@+id/playstationReservationtxtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
         android:layout_below="@+id/playstationReservationtxtReaminingTime"
         android:layout_alignStart="@+id/playstationReservationtxtDevice"
         android:drawableStart="@drawable/baseline_attach_money_24"
@@ -52,6 +50,6 @@
         android:letterSpacing="0.1"
         android:text="Price 0.0 EGP"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
  />
 </RelativeLayout>

@@ -5,7 +5,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-
 @Entity(tableName = "PlaystationReservationEntity",
     foreignKeys = [
         ForeignKey(
@@ -16,7 +15,7 @@ import androidx.room.PrimaryKey
         )
     ]
 )
-class PlaystationReservationEntity (
+class StartedReservationsServicesEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     @ColumnInfo(name = "deviceId") val deviceId: Int,
@@ -25,5 +24,4 @@ class PlaystationReservationEntity (
     @ColumnInfo(name = "price") val price: Double,
     @ColumnInfo(name = "reservationType") val reservationType: String,
     @ColumnInfo(name = "remainingTime") val remainingTime: Double,
-
-    )
+)

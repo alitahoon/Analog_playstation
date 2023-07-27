@@ -45,4 +45,9 @@ object usecaseModule {
         return UpdatePlaystationReservation(userRepo)
     }
 
+    @Provides
+    fun provideClearPlaystationReservation(userRepo: UserRepo):ClearPlaystationReservation{
+        return ClearPlaystationReservation(userRepo)
+    }
+
 }

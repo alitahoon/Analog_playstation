@@ -16,4 +16,11 @@ interface PlaystationReservationEntityDao {
     @Update
     fun update(playstationReservationEntity: PlaystationReservationEntity)
 
+    @Query("DELETE FROM PlaystationReservationEntity")
+    fun clear()
+
+
+    @Query("DELETE FROM PlaystationReservationEntity WHERE id = :id")
+    fun deleteItemWithID(id:Long)
+
 }

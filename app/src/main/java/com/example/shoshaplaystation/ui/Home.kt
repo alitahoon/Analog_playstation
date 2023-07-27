@@ -48,6 +48,7 @@ class Home : Fragment() ,HomeView,DeviceListener,DeviceCountChangeListener,Delet
             val bottomSheetDialogFragment = AddDevicesDialog(this)
             bottomSheetDialogFragment.show(requireActivity().supportFragmentManager, "AddDevicesDialog")
         }
+        homePresenter.clearReservations()
         return binding!!.root
     }
 

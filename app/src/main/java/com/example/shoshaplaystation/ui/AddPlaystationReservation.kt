@@ -1,6 +1,7 @@
 package com.example.shoshaplaystation.ui
 
 import Resource
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.example.domain.entity.Device
 import com.example.domain.entity.PlaystationReservationEntity
 import com.example.shoshaplaystation.databinding.FragmentAddPlaystationReservationBinding
+import com.example.shoshaplaystation.services.PlaystationReservationService
 import com.example.shoshaplaystation.util.CustomTimePickerDialogListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -26,6 +28,7 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
     private val TAG = "AddReservation"
     private var binding: FragmentAddPlaystationReservationBinding? = null
     private var device: Device? = null
+    private var playstationReservationService:Intent?=null
 
     @Inject
     lateinit var addPlaystationReservationPresenter: AddPlaystationReservationPresenter
@@ -126,6 +129,10 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
         when (result) {
             is Resource.Success -> {
                 Log.i(TAG, "${result.data}")
+                //start reservation service
+                playstationReservationService = Intent(requireContext(), PlaystationReservationService::class.java)
+                playstationReservationService!!.putExtra(PlaystationReservationService.NOTIFICATION_ACTION,PlaystationReservationService.START)
+                requireContext().startService(playstationReservationService)
             }
             is Resource.Failure -> {
                 Log.e(TAG, "${result.error}")
