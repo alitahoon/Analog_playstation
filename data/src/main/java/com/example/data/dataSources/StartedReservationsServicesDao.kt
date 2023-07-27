@@ -5,11 +5,11 @@ import com.example.domain.entity.StartedReservationsServicesEntity
 @Dao
 interface StartedReservationsServicesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPlaystationReservationEntity(startedReservationsServicesEntity: StartedReservationsServicesEntity)
+    fun insert(startedReservationsServicesEntity: StartedReservationsServicesEntity)
 
     @Query("SELECT * FROM StartedReservationsServicesEntity")
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
-    fun getPlaystationReservationEntities(): List<StartedReservationsServicesEntity>
+    fun getAll(): List<StartedReservationsServicesEntity>
 
 
     @Update

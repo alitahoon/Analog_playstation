@@ -5,11 +5,11 @@ import com.example.domain.entity.WatiedReservationsServicesEntity
 
 interface WatiedReservationsServicesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertPlaystationReservationEntity(watiedReservationsServicesEntity: WatiedReservationsServicesEntity)
+    fun insert(watiedReservationsServicesEntity: WatiedReservationsServicesEntity)
 
     @Query("SELECT * FROM WatiedReservationsServicesEntity")
     @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
-    fun getPlaystationReservationEntities(): List<WatiedReservationsServicesEntity>
+    fun getAll(): List<WatiedReservationsServicesEntity>
 
 
     @Update
