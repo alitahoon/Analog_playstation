@@ -7,7 +7,6 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Build
 import android.os.CountDownTimer
 import android.os.IBinder
@@ -15,7 +14,9 @@ import android.util.Log
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.example.domain.entity.PlaystationReservationEntity
+import com.example.domain.usecases.DeleteItemFromPlaystationReservationWithId
 import com.example.domain.usecases.GetAllPlaystationReservations
+import com.example.domain.usecases.InsertNewPlaystationReservation
 import com.example.shoshaplaystation.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -25,13 +26,19 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PlaystationReservationService : Service() {
+class PlaystationReservationService_d2 : Service() {
     private var timerCount:Long = 0
     @Inject
     lateinit var getAllPlaystationReservations: GetAllPlaystationReservations
 
+    @Inject
+    lateinit var deleteItemFromPlaystationReservationWithId: DeleteItemFromPlaystationReservationWithId
+
+    @Inject
+    lateinit var insertNewPlaystationReservation: InsertNewPlaystationReservation
+
+
     private val coroutineScope: CoroutineScope = MainScope()
-    private var notification:Notification?=null
 
     private val TAG="ReservationService"
     private val updateInterval = 1000 // 1 second
@@ -39,9 +46,9 @@ class PlaystationReservationService : Service() {
     private var notificationManager: NotificationManager? = null
     private var notificationLayout:RemoteViews?=null
     companion object{
-        private val NOTIFICATION_CHANNEL=101
-        private val NOTIFICATION_NAME="PLASTATION_RESERVATION"
-        private var NOTIFICATION_ID=100
+        private val NOTIFICATION_CHANNEL=102
+        private val NOTIFICATION_NAME="PLASTATION_RESERVATION2"
+        private var NOTIFICATION_ID=105
 
         // Service Actions
         const val START = "START"
@@ -66,16 +73,25 @@ class PlaystationReservationService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         CreateNotificationChannel()
-        val action = intent?.getStringExtra(NOTIFICATION_ACTION)!!
-        when (action) {
-            START -> startNOTIFICATION()
-            PAUSE -> pauseNOTIFICATION()
-            RESET -> resetNOTIFICATION()
-            GET_STATUS -> sendStatus()
-            MOVE_TO_FOREGROUND -> moveToForeground()
-            MOVE_TO_BACKGROUND -> moveToBackground()
-        }
-    return START_STICKY
+//        val action = intent?.getStringExtra(NOTIFICATION_ACTION)!!
+        val devicesReservationItem:PlaystationReservationEntity=intent?.getParcelableExtra(
+            PlaystationReservationService_d1.DEVICE_DATA
+        )!!
+        Log.i(TAG,"item ${devicesReservationItem.price}")
+        Log.i(TAG,"item ${devicesReservationItem.deviceId}")
+        setNotificationData(devicesReservationItem)
+
+
+//        when (action) {
+//            START -> startNOTIFICATION()
+//            PAUSE -> pauseNOTIFICATION()
+//            RESET -> resetNOTIFICATION()
+//            GET_STATUS -> sendStatus()
+//            MOVE_TO_FOREGROUND -> moveToForeground()
+//            MOVE_TO_BACKGROUND -> moveToBackground()
+//
+//        }
+        return START_STICKY
     }
 
     private fun moveToBackground() {
@@ -108,7 +124,7 @@ class PlaystationReservationService : Service() {
                     is Resource.Success->{
                         Log.i(TAG,"${it.data}")
                         for (reservation in it.data){
-                            setNotificationData(reservation)
+                            updateItemStatusInDatabase(reservation)
                         }
                     }
                     is Resource.Failure->{
@@ -124,7 +140,7 @@ class PlaystationReservationService : Service() {
         // Create the notification channel (call this once, preferably in Application class or MainActivity)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
-                (NOTIFICATION_CHANNEL+1).toString(),
+                (NOTIFICATION_CHANNEL).toString(),
                 NOTIFICATION_NAME,
                 NotificationManager.IMPORTANCE_HIGH
             )
@@ -148,7 +164,7 @@ class PlaystationReservationService : Service() {
     }
     private fun startNotificationTimer(durationInSeconds: Long,playstationReservationEntity: PlaystationReservationEntity) {
         timerCount = durationInSeconds
-        showNotification(playstationReservationEntity)
+       val notification= showNotification(playstationReservationEntity)
 
         val countDownTimer = object : CountDownTimer(durationInSeconds * 1000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
@@ -156,12 +172,12 @@ class PlaystationReservationService : Service() {
                 val hours = timerCount / 3600
                 val minutes = (timerCount % 3600) / 60
                 val seconds = timerCount % 60
-                val remainingTimeText = String.format("Remaining Time: %02d Hrs : %02d Min : %02d Sec", hours, minutes, seconds)
+                val remainingTimeText = String.format("Remaining Time: \n %02d Hrs : %02d Min : %02d Sec", hours, minutes, seconds)
 
                 // Update the notification layout on the main thread using MainScope
                 Log.i(TAG, "$remainingTimeText")
                 notificationLayout!!.setTextViewText(R.id.playstationReservationtxtReaminingTime, remainingTimeText)
-                notificationManager?.notify(playstationReservationEntity.id.toInt() + 1, notification)
+                notificationManager?.notify(NOTIFICATION_ID, notification)
 
             }
 
@@ -173,22 +189,69 @@ class PlaystationReservationService : Service() {
 
     }
 
-
-    fun showNotification(playstationReservationEntity: PlaystationReservationEntity) {
-            // Update the notification
-        notification = NotificationCompat.Builder(
-                this@PlaystationReservationService,
-                (NOTIFICATION_CHANNEL + 1).toString()
-            )
-                .setColorized(true)
-                .setCustomBigContentView(notificationLayout)
-                .setColor(Color.parseColor("#6DA9E4"))
-                .setSmallIcon(R.drawable.controller2_white)
-                .setOnlyAlertOnce(true)
-                .setAutoCancel(true)
-                .build()
-            NOTIFICATION_ID = playstationReservationEntity.id.toInt() + 1
-            notificationManager?.notify(NOTIFICATION_ID, notification)
+    fun updateItemStatusInDatabase(playstationReservationEntity: PlaystationReservationEntity) {
+        //first delete item from the Old table
+        coroutineScope.launch(Dispatchers.IO) {
+            deleteItemFromPlaystationReservationWithId(playstationReservationEntity.id){
+                when(it){
+                    is Resource.Success->{
+                        Log.d(TAG,"${it.data}")
+                        Log.i(TAG,"ggggggggggg")
+                        coroutineScope.launch (Dispatchers.IO){
+                            insertNewPlaystationReservation(
+                                PlaystationReservationEntity(
+                                deviceId = playstationReservationEntity.deviceId,
+                                CurrantDate = playstationReservationEntity.CurrantDate,
+                                startTime = playstationReservationEntity.startTime,
+                                price = playstationReservationEntity.price,
+                                reservationType = playstationReservationEntity.reservationType,
+                                remainingTime = playstationReservationEntity.remainingTime
+                            )
+                            ){
+                                when(it){
+                                    is Resource.Success->{
+                                        Log.d(TAG,"${it.data}")
+                                        setNotificationData(playstationReservationEntity)
+                                    }
+                                    is Resource.Failure->{
+                                        Log.e(TAG,"${it.error}")
+                                    }
+                                    is Resource.Loading->{
+                                        Log.d(TAG,"deleting item....")
+                                    }
+                                    else -> {}
+                                }
+                            }
+                        }
+                    }
+                    is Resource.Failure->{
+                        Log.e(TAG,"${it.error}")
+                    }
+                    is Resource.Loading->{
+                        Log.d(TAG,"deleting item....")
+                    }
+                    else -> {}
+                }
+            }
         }
+    }
+
+
+    fun showNotification(playstationReservationEntity: PlaystationReservationEntity): Notification {
+        // Update the notification
+        val notification = NotificationCompat.Builder(
+            this@PlaystationReservationService_d2,
+            (NOTIFICATION_CHANNEL).toString()
+        )
+            .setColorized(true)
+            .setCustomBigContentView(notificationLayout)
+            .setSmallIcon(R.drawable.controller2_white)
+            .setOnlyAlertOnce(true)
+            .setAutoCancel(true)
+            .build()
+
+        notificationManager?.notify(NOTIFICATION_ID, notification)
+        return notification
+    }
 
 }

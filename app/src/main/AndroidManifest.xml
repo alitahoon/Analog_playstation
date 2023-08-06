@@ -19,7 +19,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoshaPlaystation"
         tools:targetApi="31">
-        <service android:name=".services.PlaystationReservationService" android:enabled="true"/>
+        <service android:name=".services.PlaystationReservationService_d1" android:enabled="true"/>
+        <service android:name=".services.PlaystationReservationService_d2" android:enabled="true"/>
+        <service android:name=".services.PlaystationReservationService_d3" android:enabled="true"/>
+        <service android:name=".services.PlaystationReservationService_d4" android:enabled="true"/>
+        <service android:name=".services.PlaystationReservationService_d5" android:enabled="true"/>
         <activity
             android:name=".ui.splash"
             android:exported="true">

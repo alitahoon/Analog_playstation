@@ -1,9 +1,11 @@
 package com.example.domain.entity
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
 
 @Entity(tableName = "PlaystationReservationEntity",
@@ -16,6 +18,7 @@ import androidx.room.PrimaryKey
         )
     ]
 )
+@Parcelize
 class PlaystationReservationEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
@@ -26,4 +29,4 @@ class PlaystationReservationEntity (
     @ColumnInfo(name = "reservationType") val reservationType: String,
     @ColumnInfo(name = "remainingTime") val remainingTime: Double,
 
-    )
+    ) : Parcelable

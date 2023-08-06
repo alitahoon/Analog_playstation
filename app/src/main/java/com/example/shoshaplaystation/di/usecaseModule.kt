@@ -50,29 +50,12 @@ object usecaseModule {
         return ClearPlaystationReservation(userRepo)
     }
 
-    @Provides
-    fun provideDeleteItemFromWaitedReservationWithId(userRepo: UserRepo):DeleteItemFromWaitedReservationWithId{
-        return DeleteItemFromWaitedReservationWithId(userRepo)
-    }
+
 
     @Provides
     fun provideDeleteItemFromPlaystationReservationWithId(userRepo: UserRepo):DeleteItemFromPlaystationReservationWithId{
         return DeleteItemFromPlaystationReservationWithId(userRepo)
     }
-    @Provides
-    fun provideDeleteItemFromStartedReservationWithId(userRepo: UserRepo):DeleteItemFromStartedReservationWithId{
-        return DeleteItemFromStartedReservationWithId(userRepo)
-    }
 
-
-    @Provides
-    fun provideGetAllWaitedPlaystationReservations(userRepo: UserRepo):GetAllWaitedPlaystationReservations{
-        return GetAllWaitedPlaystationReservations(userRepo)
-    }
-
-    @Provides
-    fun provideGetAllStartedPlaystationReservations(userRepo: UserRepo):GetAllStartedPlaystationReservations{
-        return GetAllStartedPlaystationReservations(userRepo)
-    }
 
 }

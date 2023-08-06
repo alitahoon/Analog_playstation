@@ -5,24 +5,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.data.dataSources.DeviceEntityDao
-import com.example.data.dataSources.StartedReservationsServicesDao
-import com.example.data.dataSources.WatiedReservationsServicesDao
 import com.example.data.dataSources.PlaystationReservationEntityDao
 import com.example.domain.entity.DeviceEntity
 import com.example.domain.entity.PlaystationReservationEntity
-import com.example.domain.entity.StartedReservationsServicesEntity
-import com.example.domain.entity.WatiedReservationsServicesEntity
 
 @Database(
-    entities = [DeviceEntity::class,PlaystationReservationEntity::class,PlaystationReservationEntity::class,WatiedReservationsServicesEntity::class],
-    version = 5
+    entities = [DeviceEntity::class,PlaystationReservationEntity::class],
+    version = 6
 )
 abstract class MyDatabase : RoomDatabase() {
 
     abstract fun DeviceEntityDao(): DeviceEntityDao
     abstract fun PlaystationReservationEntityDao(): PlaystationReservationEntityDao
-    abstract fun StartedReservationsServicesDao(): StartedReservationsServicesDao
-    abstract fun WatiedReservationsServicesDao(): WatiedReservationsServicesDao
+
 
 
     companion object {

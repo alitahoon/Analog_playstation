@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import com.example.domain.entity.Device
 import com.example.domain.entity.PlaystationReservationEntity
 import com.example.shoshaplaystation.databinding.FragmentAddPlaystationReservationBinding
-import com.example.shoshaplaystation.services.PlaystationReservationService
+import com.example.shoshaplaystation.services.*
 import com.example.shoshaplaystation.util.CustomTimePickerDialogListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
@@ -28,7 +28,8 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
     private val TAG = "AddReservation"
     private var binding: FragmentAddPlaystationReservationBinding? = null
     private var device: Device? = null
-    private var playstationReservationService:Intent?=null
+    private var playstationReservationService: Intent? = null
+    private var playstationReservationItem: PlaystationReservationEntity? = null
 
     @Inject
     lateinit var addPlaystationReservationPresenter: AddPlaystationReservationPresenter
@@ -53,16 +54,16 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
             bottomSheetDialogFragment.show(childFragmentManager, "CustomTimePickerDialog")
         }
 
-        binding!!.addPlaystationReservationtxtHours.setOnValueChangedListener{ _, _, newVal ->
+        binding!!.addPlaystationReservationtxtHours.setOnValueChangedListener { _, _, newVal ->
             // Do something with the selected value (newVal)
             // For example, show it in a toast message:
-            reservationHours=newVal.toDouble()
+            reservationHours = newVal.toDouble()
             Toast.makeText(requireContext(), "Selected Hours: $newVal", Toast.LENGTH_SHORT).show()
         }
-        binding!!.addPlaystationReservationtxtMinutes.setOnValueChangedListener{ _, _, newVal ->
+        binding!!.addPlaystationReservationtxtMinutes.setOnValueChangedListener { _, _, newVal ->
             // Do something with the selected value (newVal)
             // For example, show it in a toast message:
-            reservationMinutes=newVal.toDouble()
+            reservationMinutes = newVal.toDouble()
             Toast.makeText(requireContext(), "Selected Minutes: $newVal", Toast.LENGTH_SHORT).show()
         }
 
@@ -72,46 +73,49 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
 
             // Get the text of the selected RadioButton
             val selectedText = selectedRadioButton.text.toString()
-            reservationType=selectedText
-            when(selectedText){
-                "Single"->{
-                    var minutesPrice=(reservationMinutes/60)*15
-                    reservationPrice=
+            reservationType = selectedText
+            when (selectedText) {
+                "Single" -> {
+                    var minutesPrice = (reservationMinutes / 60) * 15
+                    reservationPrice =
                         reservationHours?.times(15)?.plus(minutesPrice)!!.toDouble()
-                    Log.i(TAG,"price $reservationPrice")
+                    Log.i(TAG, "price $reservationPrice")
                 }
-                "Multi"->{
-                    var minutesPrice=(reservationMinutes/60)*25
-                    reservationPrice=
+                "Multi" -> {
+                    var minutesPrice = (reservationMinutes / 60) * 25
+                    reservationPrice =
                         reservationHours?.times(25)?.plus(minutesPrice)!!.toDouble()
-                    Log.i(TAG,"price $reservationPrice")
+                    Log.i(TAG, "price $reservationPrice")
                 }
             }
 
             // Do something with the selected text (e.g., show a toast)
-            Toast.makeText(requireContext(), "Selected option: $selectedText", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Selected option: $selectedText", Toast.LENGTH_SHORT)
+                .show()
         }
 
         binding!!.addPlaystationReservationBtnStart.setOnClickListener {
+            val item = PlaystationReservationEntity(
+                deviceId = device!!.id!!,
+                CurrantDate = LocalDate.now().toString(),
+                startTime = binding!!.addPlaystationReservationBtnChooseStartTime.text.toString(),
+                reservationType = reservationType!!,
+                price = reservationPrice!!,
+                remainingTime = (reservationHours * 60) + reservationMinutes
+            )
+            playstationReservationItem = item
             addPlaystationReservationPresenter.addPlaystationReservation(
-                PlaystationReservationEntity(
-                    deviceId = device!!.id!!,
-                    CurrantDate = LocalDate.now().toString(),
-                    startTime = binding!!.addPlaystationReservationBtnChooseStartTime.text.toString(),
-                    reservationType = reservationType!!,
-                    price = reservationPrice!!,
-                    remainingTime = (reservationHours*60)+reservationMinutes
-                )
+                item
             )
         }
         return binding!!.root
     }
 
     companion object {
-        private var reservationPrice:Double=0.0
-        private var reservationType:String?=null
-        private var reservationHours:Double=0.0
-        private var reservationMinutes:Double=0.0
+        private var reservationPrice: Double = 0.0
+        private var reservationType: String? = null
+        private var reservationHours: Double = 0.0
+        private var reservationMinutes: Double = 0.0
     }
 
 
@@ -130,9 +134,56 @@ class AddPlaystationReservation : Fragment(), AddPlaystationReservationView,
             is Resource.Success -> {
                 Log.i(TAG, "${result.data}")
                 //start reservation service
-                playstationReservationService = Intent(requireContext(), PlaystationReservationService::class.java)
-                playstationReservationService!!.putExtra(PlaystationReservationService.NOTIFICATION_ACTION,PlaystationReservationService.START)
-                requireContext().startService(playstationReservationService)
+                Log.i(TAG, "device number ${device!!.number}")
+                when (device!!.number) {
+                    1 -> {
+                        val playstationReservationService =
+                            Intent(requireContext(), PlaystationReservationService_d1::class.java)
+                        playstationReservationService!!.putExtra(
+                            PlaystationReservationService_d1.DEVICE_DATA,
+                            playstationReservationItem!!
+                        )
+                        requireContext().startService(playstationReservationService)
+                    }
+                    2 -> {
+                        val playstationReservationService =
+                            Intent(requireContext(), PlaystationReservationService_d2::class.java)
+                        playstationReservationService!!.putExtra(
+                            PlaystationReservationService_d1.DEVICE_DATA,
+                            playstationReservationItem!!
+                        )
+                        requireContext().startService(playstationReservationService)
+                    }
+                    3 -> {
+                        val playstationReservationService =
+                            Intent(requireContext(), PlaystationReservationService_d3::class.java)
+                        playstationReservationService!!.putExtra(
+                            PlaystationReservationService_d1.DEVICE_DATA,
+                            playstationReservationItem!!
+                        )
+                        requireContext().startService(playstationReservationService)
+                    }
+                    4 -> {
+                        val playstationReservationService =
+                            Intent(requireContext(), PlaystationReservationService_d4::class.java)
+                        playstationReservationService!!.putExtra(
+                            PlaystationReservationService_d1.DEVICE_DATA,
+                            playstationReservationItem!!
+                        )
+                        requireContext().startService(playstationReservationService)
+                    }
+                    5 -> {
+                       val playstationReservationService =
+                            Intent(requireContext(), PlaystationReservationService_d5::class.java)
+                        playstationReservationService!!.putExtra(
+                            PlaystationReservationService_d1.DEVICE_DATA,
+                            playstationReservationItem!!
+                        )
+                        requireContext().startService(playstationReservationService)
+                    }
+
+                }
+
             }
             is Resource.Failure -> {
                 Log.e(TAG, "${result.error}")

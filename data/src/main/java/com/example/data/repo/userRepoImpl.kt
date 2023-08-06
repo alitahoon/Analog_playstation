@@ -4,8 +4,6 @@ import Resource
 import com.example.data.MyDatabase
 import com.example.domain.entity.DeviceEntity
 import com.example.domain.entity.PlaystationReservationEntity
-import com.example.domain.entity.StartedReservationsServicesEntity
-import com.example.domain.entity.WatiedReservationsServicesEntity
 import com.example.domain.repo.UserRepo
 
 
@@ -39,65 +37,14 @@ class userRepoImpl(
         }
     }
 
-    override suspend fun insertNewStartedReservationItem(
-        startedReservationsServicesEntity: StartedReservationsServicesEntity,
-        result: (Resource<String>) -> Unit
-    ) {
-        try {
-            myDatabase.StartedReservationsServicesDao().insert(startedReservationsServicesEntity)
-            result.invoke(Resource.Success("Successfully added in database"))
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed inserting.. ---> ${e.message}"))
-        }    }
 
-    override suspend fun insertNewWaitedReservationItem(
-        watiedReservationsServicesEntity: WatiedReservationsServicesEntity,
-        result: (Resource<String>) -> Unit
-    ) {
-        try {
-            myDatabase.WatiedReservationsServicesDao().insert(watiedReservationsServicesEntity)
-            result.invoke(Resource.Success("Successfully added in database"))
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed inserting.. ---> ${e.message}"))
-        }
-    }
 
-    override suspend fun getAllStartedPlaystationReservations(result: (Resource<ArrayList<StartedReservationsServicesEntity>>) -> Unit) {
-        try {
-            result.invoke(
-                Resource.Success(
-                    ArrayList(
-                        myDatabase.StartedReservationsServicesDao().getAll()
-                    )
-                )
-            )
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed  getting Playstation Reservation Entities ---> ${e.message}"))
-        }    }
 
-    override suspend fun getAllWaitedPlaystationReservations(result: (Resource<ArrayList<WatiedReservationsServicesEntity>>) -> Unit) {
-        try {
-            result.invoke(
-                Resource.Success(
-                    ArrayList(
-                        myDatabase.WatiedReservationsServicesDao().getAll()
-                    )
-                )
-            )
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed  getting Playstation Reservation Entities ---> ${e.message}"))
-        }     }
 
-    override suspend fun deleteItemFromStartedReservationWithId(
-        id: Long?,
-        result: (Resource<String>) -> Unit
-    ) {
-        try {
-            myDatabase.StartedReservationsServicesDao().deleteItemWithID(id!!)
-            result.invoke(Resource.Success("Successfully deleted "))
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed deleting  ---> ${e.message}"))
-        }      }
+
+
+
+
 
     override suspend fun deleteItemFromPlaystationReservationWithId(
         id: Long?,
@@ -110,16 +57,7 @@ class userRepoImpl(
             result.invoke(Resource.Failure("Failed deleting  ---> ${e.message}"))
         }       }
 
-    override suspend fun deleteItemFromWaitedReservationWithId(
-        id: Long?,
-        result: (Resource<String>) -> Unit
-    ) {
-        try {
-            myDatabase.WatiedReservationsServicesDao().deleteItemWithID(id!!)
-            result.invoke(Resource.Success("Successfully deleted "))
-        } catch (e: Exception) {
-            result.invoke(Resource.Failure("Failed deleting  ---> ${e.message}"))
-        }    }
+
 
     override suspend fun updatePlaystationReservation(
         playstationReservationEntity: PlaystationReservationEntity,
